@@ -32,6 +32,7 @@ We report the conversations extracted from wireshark capture of fast.com speedte
 
 From this table we see that there are 5 comunications that excange a high number of packets, particularly these are the endpoints of this 5 comunications: 23.246.50.154, 23.246.51.156, 45.57.72.140, 45.57.73.144, 151.99.109.9.
 It's probable that fast.com opens 5 connections with these machine on the internet for the speedtest, in particular, analyzing the number of bytes exchanged in both directions between the local machine and these remote machines, the first two hosts (23.246.50.154, 23.246.51.156) are used to test the download speed, and the other three hosts (45.57.72.140, 45.57.73.144, 151.99.109.9) are used to test the upload speed.
+Making a whois request on the address 52.18.232.179 (seventh row first column) the result is that it belongs to amazon and since netflix relies on AWS for its services seems probable that the 5 hosts described above are sent by the host identified by the IP 52.18.232.179.
 
 ### I/O Graph analysis
 To analyze the speedtest we opened the I/O Graph window from statistics menu and we added two filters: one for filtering the download traffic `tcp.srcport == 443` (the pink curve) and one for filtering the upload traffic `tcp.dstport == 443` (the blue curve).
