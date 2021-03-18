@@ -7,7 +7,7 @@ For a further accuracy in the capture we set the `tcp` filter option in wireshar
 From this speedtest we focused into 2 informations: the download speed (34 Mbps) and the upload speed (8.1 Mbps).
 
 ## Wireshark analysis
-During the speedtest we captured all traffic outgoing and ingoing from and to our machine including the one created by fast.com and it can be found in [this](fastcom_capture.pcap) pcap file.
+During the speedtest we captured all traffic outgoing and ingoing from and to our machine including the one created by fast.com and it can be found in [fastcom_capture](fastcom_capture.pcap) pcap file.
 
 To analyze the speedtest we opened the I/O Graph window from statistics menu and we added two filters: one for filtering the download traffic `tcp.srcport == 443` (the pink curve) and one for filtering the upload traffic `tcp.dstport == 443` (the blue curve).
 ![wireshark_downupl](fastcom_capture_iograph.png)
