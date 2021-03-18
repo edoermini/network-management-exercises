@@ -1,4 +1,4 @@
-# Speedtest Analysis with wireshark
+# Speedtest Analysis with wireshark (Group 1)
 Since make an analysis into a local machine could lead to a bad evaluation of results due to other applications' network traffic noise, we made the analysis into a isolated environment like a virtual machine to avoid this noise, not coming from or going to fast.com.
 For a further accuracy in the capture we set the `tcp` filter option in wireshark and after we run the speedtest. 
 
