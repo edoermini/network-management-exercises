@@ -1,16 +1,16 @@
 # Speedtest Analysis with wireshark (Group 1)
-Since make an analysis into a local machine could lead to a bad evaluation of results due to other applications' network traffic noise, we made the analysis into a isolated environment like a virtual machine to avoid this noise, not coming from or going to fast.com.
+Since make an analysis into a local machine could lead to a bad evaluation of results due to other applications' network traffic noise, we made the analysis into a isolated environment like a virtual machine.
 For a further accuracy in the capture we set the `tcp` filter option in wireshark and after we run the speedtest. 
 
 ## Fast.com result
-![fastcom output](fast_output.png)
+![fastcom output](https://raw.githubusercontent.com/edoermini/network-management-exercises/main/wireshark-speedtest-analysis/fast_output.png)
 From this speedtest we focused into 2 informations: the download speed (34 Mbps) and the upload speed (8.1 Mbps).
 
 ## Wireshark analysis
 During the speedtest we captured all traffic outgoing and ingoing from and to our machine including the one created by fast.com and it can be found in [this pcap file](fastcom_capture.pcap).
 
 ### Conversations:
-We report the conversations extracted from wireshark capture of fast.com speedtest:
+We report below the conversations extracted from wireshark capture of fast.com speedtest:
 
 |Address A     |Address B      |Packets|Bytes   |Packets A → B|Bytes A → B|Packets B → A|Bytes B → A|Rel Start         |Duration          |Bits/s A → B      |Bits/s B → A      |
 |--------------|---------------|-------|--------|-------------|-----------|-------------|-----------|------------------|------------------|------------------|------------------|
@@ -29,14 +29,13 @@ We report the conversations extracted from wireshark capture of fast.com speedte
 |192.168.1.9   |192.168.1.255  |2      |376     |2            |376        |0            |0          |13.230796732      |30.003382556      |100.25536268738033|0                 |
 |192.168.1.26  |224.0.0.251    |1      |46      |1            |46         |0            |0          |30.009647119      |0                 |0                 |0                 |
 
-
-From this table we see that there are 5 comunications that excange a high number of packets, particularly these are the endpoints of this 5 comunications: 23.246.50.154, 23.246.51.156, 45.57.72.140, 45.57.73.144, 151.99.109.9.
-It's probable that fast.com opens 5 connections with these machine on the internet for the speedtest, in particular, analyzing the number of bytes exchanged in both directions between the local machine and these remote machines, the first two hosts (23.246.50.154, 23.246.51.156) are used to test the download speed, and the other three hosts (45.57.72.140, 45.57.73.144, 151.99.109.9) are used to test the upload speed.
-Making a whois request on the address 52.18.232.179 (seventh row first column) the result is that it belongs to amazon and since netflix relies on AWS for its services seems probable that the 5 hosts described above are sent by the host identified by the IP 52.18.232.179.
+From this table we see that our machine exchange an high number of packets with these 5 endpoints: 23.246.50.154, 23.246.51.156, 45.57.72.140, 45.57.73.144, 151.99.109.9.
+We suppose that fast.com opens 5 connections with these machines on the internet for the speedtest, in particular, analyzing the number of bytes exchanged in both directions between the local machine and these remote machines, the first two hosts (23.246.50.154, 23.246.51.156) are used to test the download speed, and the other three hosts (45.57.72.140, 45.57.73.144, 151.99.109.9) are used to test the upload speed.
+Making a whois request on the address 52.18.232.179 (seventh row first column) the result is that it belongs to amazon and since netflix relies on AWS for its services we suppose also that the 5 hosts used for the speedtest were sent by the host with ip 52.18.232.179.
 
 ### I/O Graph analysis
 To analyze the speedtest we opened the I/O Graph window from statistics menu and we added two filters: one for filtering the download traffic `tcp.srcport == 443` (the pink curve) and one for filtering the upload traffic `tcp.dstport == 443` (the blue curve).
-![wireshark_downupl](fastcom_capture_iograph.png)
+![wireshark_downupl](https://raw.githubusercontent.com/edoermini/network-management-exercises/main/wireshark-speedtest-analysis/fastcom_capture_iograph.png)
 
 ## Results
 From the wireshark analysis the curves describes with a good accuracy what fast.com says, in fact the upload curve in the chart oscillates around 35 Mbsp and the download around 9 Mbps.
