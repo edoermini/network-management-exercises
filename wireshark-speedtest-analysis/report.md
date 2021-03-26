@@ -11,7 +11,7 @@ For a further accuracy in the capture we set the `tcp` filter option in wireshar
 From this speedtest we focused into 2 informations: the download speed (34 Mbps) and the upload speed (8.1 Mbps).
 
 ## Wireshark analysis
-During the speedtest we captured all traffic outgoing and ingoing from and to our machine including the one created by fast.com and it can be found in [this pcap file](fastcom_capture.pcap).
+During the speedtest we captured all traffic outgoing and ingoing from and to our machine including the one created by fast.com and it can be found in [this pcap file](https://github.com/edoermini/network-management-exercises/blob/main/wireshark-speedtest-analysis/fastcom_capture.pcap).
 
 ### Conversations:
 We report below the conversations extracted from wireshark capture of fast.com speedtest:
