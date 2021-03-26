@@ -1,3 +1,7 @@
+Edoardo Ermini (582198), Riccardo Luzi (579752), Luca G. Pinta (579458)
+
+---
+
 # Speedtest Analysis with wireshark (Group 1)
 Since make an analysis into a local machine could lead to a bad evaluation of results due to other applications' network traffic noise, we made the analysis into a isolated environment like a virtual machine.
 For a further accuracy in the capture we set the `tcp` filter option in wireshark and after we run the speedtest. 
